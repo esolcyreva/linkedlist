@@ -99,3 +99,54 @@ void list_destroy(list_t **head)
         list_delete(head, val);
     }
 }
+
+void iterative_reverse(list_t **head)
+{
+    list_t *first, *middle;
+    first = NULL;
+    middle = *head;
+
+    if (middle == NULL || middle->next == NULL) {
+        return;
+    }
+
+    while(middle != NULL) {
+        list_t *temp = middle->next;
+        middle->next = first;
+        first = middle;
+        middle = temp;
+    }
+    *head = first;
+    return;
+
+
+}
+
+void recursive_print(list_t **head)
+{
+    list_t *first = *head;
+    list_t *rest = NULL;
+    if (first == NULL) {
+        return;
+    }
+    rest = first->next;
+    recursive_print(&rest);
+    printf("%d\t",first->data);
+}
+
+void recursive_reverse(list_t **head)
+{
+    list_t *first = *head;
+    list_t *rest = NULL;
+    if (first == NULL) {
+        return;
+    }
+    rest = first->next;
+    if (rest == NULL) {
+        return;
+    }
+    recursive_reverse(&rest);
+    first->next->next = first;
+    first->next = NULL;
+    *head = rest;
+}

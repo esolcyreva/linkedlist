@@ -12,3 +12,6 @@ void list_init(list_t **);
 void list_destroy(list_t **);
 void list_init(list_t **);
 void list_print(list_t **);
+void iterative_reverse(list_t **);
+void recursive_print(list_t **);
+void recursive_reverse(list_t **);
