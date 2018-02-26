@@ -15,3 +15,4 @@ void list_print(list_t **);
 void iterative_reverse(list_t **);
 void recursive_print(list_t **);
 void recursive_reverse(list_t **);
+list_t* reverse_k(list_t **, int);

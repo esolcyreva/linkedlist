@@ -150,3 +150,38 @@ void recursive_reverse(list_t **head)
     first->next = NULL;
     *head = rest;
 }
+
+int length(list_t *head) {
+    int len = 0;
+    while (head != NULL) {
+        len++;
+        head = head->next;
+    }
+    return len;
+}
+
+list_t* reverse_k(list_t **head, int k)
+{
+    list_t *curr = *head;
+    int len = length(*head);
+    list_t *prev, *next = NULL;
+
+    if (curr == NULL) {
+        return NULL;
+    }
+
+    if (len < k) {
+        return curr;
+    }
+    len = 0;
+    prev = NULL;
+    while (curr != NULL && len < k) {
+        next = curr->next;
+        curr->next = prev;
+        prev = curr;
+        curr = next;
+        len++;
+    }
+    (*head)->next = reverse_k(&curr, k);
+    return prev;
+}
